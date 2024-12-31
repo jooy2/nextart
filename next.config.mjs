@@ -9,9 +9,12 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   compress: true,
-  swcMinify: true,
   poweredByHeader: false,
+  trailingSlash: false,
   experimental: {
     scrollRestoration: true,
   },

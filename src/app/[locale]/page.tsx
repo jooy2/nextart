@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { css } from '@mui/material-pigment-css';
 
 const cssTextMainHeading = css({
@@ -10,9 +10,7 @@ const cssTextMainHeading = css({
   textAlign: 'center',
 });
 
-export default async function Index({ params: { locale } }) {
-  setRequestLocale(locale);
-
+export default async function Index() {
   const t = await getTranslations();
 
   return (
