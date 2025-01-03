@@ -1,5 +1,5 @@
 import '@mui/material-pigment-css/styles.css';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Metadata, Viewport } from 'next';

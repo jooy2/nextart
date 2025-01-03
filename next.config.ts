@@ -1,10 +1,10 @@
-import { withPigment } from '@pigment-css/nextjs-plugin';
+import { PigmentOptions, withPigment } from '@pigment-css/nextjs-plugin';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin();
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextJsConfig: NextConfig = {
   output: 'standalone',
   compiler: {
     emotion: true,
@@ -24,8 +24,8 @@ const nextConfig = {
 /**
  * @type {import('@pigment-css/nextjs-plugin').PigmentOptions}
  */
-const pigmentConfig = {
-  // transformLibraries: ['@mui/material'],
+const pigmentCssConfig: PigmentOptions = {
+  transformLibraries: ['@mui/material'],
 };
 
-export default withNextIntl(withPigment(nextConfig, pigmentConfig));
+export default withPigment(withNextIntl(nextJsConfig), pigmentCssConfig);
