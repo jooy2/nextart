@@ -3,9 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Metadata, Viewport } from 'next';
-import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import theme from '@/lib/theme';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -35,11 +33,13 @@ export function generateStaticParams() {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   const messages = await getMessages();
@@ -52,10 +52,8 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <AppRouterCacheProvider options={{ key: 'css' }}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <StoreProvider>{children}</StoreProvider>
-            </ThemeProvider>
+            <CssBaseline />
+            <StoreProvider>{children}</StoreProvider>
           </AppRouterCacheProvider>
         </NextIntlClientProvider>
       </body>
