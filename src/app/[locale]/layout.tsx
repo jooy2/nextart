@@ -1,4 +1,5 @@
 import '@mui/material-pigment-css/styles.css';
+
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
@@ -8,14 +9,15 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import StoreProvider from '@/store/StoreProvider';
+import { SITE_NAME } from '@/constants/common';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'NextART',
-  applicationName: 'NextART',
-  description: 'NextART',
-  keywords: [],
+  title: SITE_NAME,
+  applicationName: SITE_NAME,
+  description: 'NextART is a predefined template based on the Netx.js App router.',
+  keywords: ['Next.js', 'NextART', 'Template'],
   // icons: { shortcut: '/favicon.png' },
 };
 

@@ -1,10 +1,9 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { css } from '@mui/material-pigment-css';
 import Grid from '@pigment-css/react/Grid';
 import Container from '@pigment-css/react/Container';
-import Link from 'next/link';
-import { cssBlackButton } from '@/styles/commonStyles';
+import ClientSide from '@/app/[locale]/second-page/ClientSide';
 
 const cssTextMainHeading = css({
   userSelect: 'none',
@@ -21,16 +20,12 @@ export default async function Index() {
       <Grid container spacing={2}>
         <Grid size={12}>
           <Typography component="h1" variant="h4" className={cssTextMainHeading}>
-            {t('title.main')}
+            {t('title.second')}
           </Typography>
-          <Typography component="p">{t('desc.main')}</Typography>
+          <Typography component="p">{t('desc.second')}</Typography>
         </Grid>
         <Grid size={12} className={css({ marginTop: '50px' })}>
-          <Link href="/second-page">
-            <Button variant="contained" color="primary" fullWidth className={cssBlackButton}>
-              {t('menu.second-page')}
-            </Button>
-          </Link>
+          <ClientSide />
         </Grid>
       </Grid>
     </Container>

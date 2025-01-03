@@ -1,3 +1,14 @@
 {
-  "hello": "Hello"
+  "title": {
+    "main": "Main Page",
+    "second": "Second Page"
+  },
+  "desc": {
+    "main": "This is main page screen.",
+    "second": "This is second page screen."
+  },
+  "menu": {
+    "second-page": "Go to second page",
+    "back": "Go to main page"
+  }
 }
