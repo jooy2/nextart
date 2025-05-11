@@ -1,9 +1,16 @@
 import { ReactNode } from 'react';
 import { globalCss } from '@mui/material-pigment-css';
+import { Metadata } from 'next';
 
 type Props = {
   children: ReactNode;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    alternates: { canonical: './' },
+  };
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 globalCss`
