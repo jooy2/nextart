@@ -2,7 +2,7 @@
 
 import { css } from '@mui/material-pigment-css';
 import {
-  Grid2 as Grid,
+  Grid,
   IconButton,
   List,
   ListItem,

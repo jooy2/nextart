@@ -1,4 +1,4 @@
-import { Button, Grid2 as Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { css } from '@mui/material-pigment-css';
 import Container from '@pigment-css/react/Container';
