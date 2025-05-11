@@ -5,7 +5,6 @@
 # IDEs
 .idea/
 *.iml
-.vscode/
 
 # Logs
 logs
