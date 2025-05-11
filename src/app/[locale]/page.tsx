@@ -1,10 +1,12 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Grid2 as Grid, Typography } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { css } from '@mui/material-pigment-css';
-import Grid from '@pigment-css/react/Grid';
 import Container from '@pigment-css/react/Container';
 import Link from 'next/link';
 import { cssBlackButton } from '@/styles/commonStyles';
+import PageContentClient from '@/app/[locale]/PageContentClient';
+import type { Metadata } from 'next';
+import { SITE_NAME } from '@/constants/common';
 
 const cssTextMainHeading = css({
   userSelect: 'none',
@@ -12,6 +14,12 @@ const cssTextMainHeading = css({
   color: '#4d4d4d',
   margin: '40px 0 30px 0 !important',
 });
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: SITE_NAME,
+  };
+}
 
 export default async function Index() {
   const t = await getTranslations();
@@ -31,6 +39,9 @@ export default async function Index() {
               {t('menu.second-page')}
             </Button>
           </Link>
+        </Grid>
+        <Grid size={12}>
+          <PageContentClient />
         </Grid>
       </Grid>
     </Container>

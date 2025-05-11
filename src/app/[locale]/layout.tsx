@@ -10,6 +10,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import StoreProvider from '@/store/StoreProvider';
 import { SITE_NAME } from '@/constants/common';
+import ClientThemeProvider from '@/components/ClientThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,8 +52,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <AppRouterCacheProvider options={{ key: 'css' }}>
-            <CssBaseline />
-            <StoreProvider>{children}</StoreProvider>
+            <ClientThemeProvider>
+              <CssBaseline />
+              <StoreProvider>{children}</StoreProvider>
+            </ClientThemeProvider>
           </AppRouterCacheProvider>
         </NextIntlClientProvider>
       </body>
