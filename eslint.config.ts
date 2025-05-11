@@ -25,8 +25,8 @@ export default pluginTypeScriptESLint.config(
     '**/.next',
     '**/.idea',
     '**/.vscode',
-    '**/src/components/nextNavigationGuard',
-    '**/package-lock.json',
+    '**/-lock.json',
+    '**/-lock.yaml',
   ]),
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
