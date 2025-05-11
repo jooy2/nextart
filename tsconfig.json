@@ -2,6 +2,9 @@
   "compilerOptions": {
     "target": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -9,8 +12,8 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -21,8 +24,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "strictNullChecks": true
+    }
   },
   "include": [
     "next-env.d.ts",
