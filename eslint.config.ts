@@ -1,24 +1,21 @@
 import { globalIgnores } from 'eslint/config';
 import pluginJs from '@eslint/js';
 import pluginTypeScriptESLint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
-import pluginNext from '@next/eslint-plugin-next';
-import pluginReactHooks from 'eslint-plugin-react-hooks';
+
 import parserTypeScript from '@typescript-eslint/parser';
-import pluginImport from 'eslint-plugin-import';
-import pluginPrettier from 'eslint-plugin-prettier/recommended';
 
 import globals from 'globals';
+import { FlatCompat } from '@eslint/eslintrc';
+
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+  recommendedConfig: pluginJs.configs.recommended,
+});
 
 export default pluginTypeScriptESLint.config(
-  pluginPrettier,
-  pluginReact.configs.flat.recommended,
-  pluginJs.configs.recommended,
-  pluginReactHooks.configs['recommended-latest'],
-  pluginTypeScriptESLint.configs.recommended,
-  pluginImport.flatConfigs.electron,
-  pluginNext.flatConfig.recommended,
-  pluginNext.flatConfig.coreWebVitals,
+  ...compat.config({
+    extends: ['next', 'next/typescript', 'prettier'],
+  }),
   globalIgnores([
     '**/node_modules',
     '**/.git',
