@@ -22,8 +22,8 @@ export default pluginTypeScriptESLint.config(
     '**/.next',
     '**/.idea',
     '**/.vscode',
-    '**/-lock.json',
-    '**/-lock.yaml',
+    '**/*-lock.json',
+    '**/*-lock.yaml',
   ]),
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -41,6 +41,7 @@ export default pluginTypeScriptESLint.config(
       parserOptions: {
         parser: parserTypeScript,
         ecmaVersion: 2022,
+        project: 'tsconfig.json',
         tsconfigRootDir: '.',
         ecmaFeatures: {
           jsx: true,
@@ -50,18 +51,12 @@ export default pluginTypeScriptESLint.config(
     },
     rules: {
       eqeqeq: 'error',
-      'arrow-parens': 'off',
-      'consistent-return': 'warn',
-      'generator-star-spacing': 'off',
-      'no-nested-ternary': 'off',
-      'no-tabs': 'off',
-      'no-mixed-spaces-and-tabs': 'off',
-      'max-len': 'off',
       'no-underscore-dangle': 'off',
       'no-case-declarations': 'off',
       'no-trailing-spaces': 'error',
       'no-unsafe-optional-chaining': 'off',
       'no-control-regex': 'off',
+      'no-unused-vars': 'off',
       'react/require-default-props': [
         'error',
         {
@@ -70,15 +65,15 @@ export default pluginTypeScriptESLint.config(
         },
       ],
       'react-hooks/exhaustive-deps': 'off',
-      'react/prop-types': 'off',
-      'react/jsx-key': 'off',
-      'react/destructuring-assignment': 'warn',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-props-no-spreading': 'off',
-      'react/no-unknown-property': ['warn', { ignore: ['css'] }],
-      'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+      'react/no-unknown-property': ['error', { ignore: ['css'] }],
+      'react/jsx-filename-extension': [
+        2,
+        { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      ],
+      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unsafe-function-type': 'off',
     },
   },
 );

@@ -13,7 +13,10 @@ const nextJsConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   trailingSlash: false,
+  productionBrowserSourceMaps: false,
   experimental: {
+    serverSourceMaps: false,
+    webpackMemoryOptimizations: true,
     scrollRestoration: true,
   },
   staticPageGenerationTimeout: 120,
