@@ -20,7 +20,7 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
   return {
     title: SITE_NAME,
     applicationName: SITE_NAME,
-    description: 'NextART is a predefined template based on the Netx.js App router.',
+    description: 'NextART is a predefined template based on the Next.js App router.',
     keywords: ['Next.js', 'NextART', 'Template'],
     authors: [{ name: SITE_NAME, url: BASE_URL }],
     alternates: {
