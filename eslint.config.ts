@@ -42,7 +42,6 @@ export default pluginTypeScriptESLint.config(
         parser: parserTypeScript,
         ecmaVersion: 2022,
         project: 'tsconfig.json',
-        tsconfigRootDir: '.',
         ecmaFeatures: {
           jsx: true,
         },
@@ -72,7 +71,14 @@ export default pluginTypeScriptESLint.config(
         2,
         { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
       ],
-      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
