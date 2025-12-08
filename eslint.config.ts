@@ -1,21 +1,17 @@
-import { globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import pluginJs from '@eslint/js';
-import pluginTypeScriptESLint from 'typescript-eslint';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import prettier from 'eslint-config-prettier/flat';
 
 import parserTypeScript from '@typescript-eslint/parser';
 
 import globals from 'globals';
-import { FlatCompat } from '@eslint/eslintrc';
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: pluginJs.configs.recommended,
-});
-
-export default pluginTypeScriptESLint.config(
-  ...compat.config({
-    extends: ['next', 'next/typescript', 'prettier'],
-  }),
+export default defineConfig(
+  ...nextVitals,
+  ...nextTs,
+  prettier,
   globalIgnores([
     '**/node_modules',
     '**/.git',
@@ -24,6 +20,7 @@ export default pluginTypeScriptESLint.config(
     '**/.vscode',
     '**/*-lock.json',
     '**/*-lock.yaml',
+    '**/*.d.ts',
   ]),
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -40,7 +37,6 @@ export default pluginTypeScriptESLint.config(
       },
       parserOptions: {
         parser: parserTypeScript,
-        ecmaVersion: 2022,
         project: 'tsconfig.json',
         ecmaFeatures: {
           jsx: true,
@@ -48,6 +44,8 @@ export default pluginTypeScriptESLint.config(
         requireConfigFile: false,
       },
     },
+    plugins: { pluginJs },
+    extends: ['pluginJs/recommended'],
     rules: {
       eqeqeq: 'error',
       'no-underscore-dangle': 'off',
@@ -67,10 +65,7 @@ export default pluginTypeScriptESLint.config(
       'react/react-in-jsx-scope': 'off',
       'react/jsx-props-no-spreading': 'off',
       'react/no-unknown-property': ['error', { ignore: ['css'] }],
-      'react/jsx-filename-extension': [
-        2,
-        { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-      ],
+      'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
