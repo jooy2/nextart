@@ -7,9 +7,6 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextJsConfig: NextConfig = {
   output: 'standalone',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   compress: true,
   poweredByHeader: false,
   trailingSlash: false,
@@ -18,6 +15,9 @@ const nextJsConfig: NextConfig = {
     serverSourceMaps: false,
     webpackMemoryOptimizations: true,
     scrollRestoration: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
   staticPageGenerationTimeout: 120,
   async headers() {

@@ -8,10 +8,10 @@ import parserTypeScript from '@typescript-eslint/parser';
 
 import globals from 'globals';
 
-export default defineConfig(
+export default defineConfig([
   ...nextVitals,
   ...nextTs,
-  prettier,
+  pluginJs.configs.recommended,
   globalIgnores([
     '**/node_modules',
     '**/.git',
@@ -44,8 +44,6 @@ export default defineConfig(
         requireConfigFile: false,
       },
     },
-    plugins: { pluginJs },
-    extends: ['pluginJs/recommended'],
     rules: {
       eqeqeq: 'error',
       'no-underscore-dangle': 'off',
@@ -77,4 +75,5 @@ export default defineConfig(
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-);
+  prettier,
+]);
