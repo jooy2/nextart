@@ -1,5 +1,3 @@
-import '@mui/material-pigment-css/styles.css';
-
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
@@ -11,6 +9,8 @@ import { routing } from '@/i18n/routing';
 import StoreProvider from '@/store/StoreProvider';
 import { BASE_URL, SITE_NAME } from '@/constants/common';
 import ClientThemeProvider from '@/components/ClientThemeProvider';
+import '../../styles/globals.css';
+import { clsx } from 'clsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -60,9 +60,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={clsx(inter.className, 'h-screen wrap-anywhere break-keep')}>
         <NextIntlClientProvider messages={messages}>
-          <AppRouterCacheProvider options={{ key: 'css' }}>
+          <AppRouterCacheProvider>
             <ClientThemeProvider>
               <CssBaseline />
               <StoreProvider>{children}</StoreProvider>

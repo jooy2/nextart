@@ -1,17 +1,9 @@
-import { css } from '@mui/material-pigment-css';
 import { Button } from '@mui/material';
 
 export default function ButtonSet() {
   return (
     <>
-      <Button
-        variant="text"
-        color="primary"
-        fullWidth
-        className={css({
-          color: 'red',
-        })}
-      >
+      <Button variant="text" color="primary" fullWidth className="text-red">
         TextButton
       </Button>
       <Button variant="outlined" color="primary" fullWidth>

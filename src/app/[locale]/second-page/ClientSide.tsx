@@ -1,6 +1,5 @@
 'use client';
 
-import { cssBlackButton } from '@/styles/commonStyles';
 import { Button } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -15,7 +14,7 @@ export default function ClientSide() {
       variant="contained"
       color="primary"
       fullWidth
-      className={cssBlackButton}
+      className="bg-black text-white"
     >
       {t('menu.back')}
     </Button>

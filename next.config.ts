@@ -1,4 +1,3 @@
-import { PigmentOptions, withPigment } from '@pigment-css/nextjs-plugin';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { NextConfig } from 'next';
 import theme from '@/styles/theme';
@@ -13,7 +12,6 @@ const nextJsConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   experimental: {
     serverSourceMaps: false,
-    webpackMemoryOptimizations: true,
     scrollRestoration: true,
   },
   typescript: {
@@ -55,9 +53,4 @@ const nextJsConfig: NextConfig = {
   },
 };
 
-const pigmentCssConfig: PigmentOptions = {
-  transformLibraries: ['@mui/material'],
-  theme,
-};
-
-export default withPigment(withNextIntl(nextJsConfig), pigmentCssConfig);
+export default withNextIntl(nextJsConfig);

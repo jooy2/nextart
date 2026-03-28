@@ -7,7 +7,7 @@ Next.js App Router Template
 This project is a basic template based on Next.js' App Router. It includes a number of features, including default build settings to get you started quickly:
 
 - Multilingual support (`next-intl`)
-- Material UI + Pigment CSS
+- Material UI + Tailwind CSS
 - SEO friendly, sitemap
 - ESLint + Prettier formatting
 

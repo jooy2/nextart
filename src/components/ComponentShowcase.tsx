@@ -1,6 +1,5 @@
 'use client';
 
-import { css } from '@mui/material-pigment-css';
 import {
   Grid,
   IconButton,
@@ -13,7 +12,6 @@ import {
   Tooltip,
 } from '@mui/material';
 import Link from 'next/link';
-import { cssRemoveLinkStyle } from '@/styles/commonStyles';
 import { Language } from '@mui/icons-material';
 import ButtonSet from '@/components/ButtonSets';
 
@@ -37,14 +35,14 @@ export default function ComponentShowcase({ menuItem }: { menuItem: any }) {
           </IconButton>
         </Tooltip>
       </Grid>
-      <Grid size={6} className={css({ marginTop: '50px' })}>
+      <Grid size={6} marginTop="50px">
         <ButtonSet />
       </Grid>
-      <Grid size={6} className={css({ marginTop: '50px' })}>
+      <Grid size={6} marginTop="50px">
         <Paper>
           <List>
             {menuItem.map((item) => (
-              <Link href={item.href} key={item.href} className={cssRemoveLinkStyle}>
+              <Link href={item.href} key={item.href} className="text-black no-underline">
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>{item.icon}</ListItemIcon>
