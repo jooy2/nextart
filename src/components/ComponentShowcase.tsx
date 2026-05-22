@@ -17,7 +17,7 @@ import ButtonSet from '@/components/ButtonSets';
 
 export default function ComponentShowcase({ menuItem }: { menuItem: any }) {
   return (
-    <>
+    <Grid container spacing={3}>
       <Grid size={12}>
         <Tooltip title="Test" placement="bottom">
           <IconButton onClick={() => null}>
@@ -35,10 +35,10 @@ export default function ComponentShowcase({ menuItem }: { menuItem: any }) {
           </IconButton>
         </Tooltip>
       </Grid>
-      <Grid size={6} marginTop="50px">
+      <Grid size={6} className="mt-12.5">
         <ButtonSet />
       </Grid>
-      <Grid size={6} marginTop="50px">
+      <Grid size={6}  className="mt-12.5">
         <Paper>
           <List>
             {menuItem.map((item) => (
@@ -54,6 +54,6 @@ export default function ComponentShowcase({ menuItem }: { menuItem: any }) {
           </List>
         </Paper>
       </Grid>
-    </>
+    </Grid>
   );
 }

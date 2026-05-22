@@ -21,16 +21,13 @@ export default async function Index() {
           <Typography
             component="h1"
             variant="h4"
-            fontWeight={800}
-            color="#4d4d4d"
-            marginY="40px"
-            marginX="30px"
+            className="font-extrabold! my-10! text-[#4d4d4d]"
           >
             {t('title.main')}
           </Typography>
           <Typography component="p">{t('desc.main')}</Typography>
         </Grid>
-        <Grid size={12} marginTop="50px">
+        <Grid size={12} className="mt-12.5">
           <Link href="/second-page">
             <Button variant="contained" color="primary" fullWidth className="bg-black text-white">
               {t('menu.second-page')}

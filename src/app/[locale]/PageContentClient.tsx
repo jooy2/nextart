@@ -2,7 +2,6 @@
 
 import { AccountCircle, Home } from '@mui/icons-material';
 import ComponentShowcase from '@/components/ComponentShowcase';
-import { Grid } from '@mui/material';
 
 export default function PageContentClient() {
   const menuItem = [
@@ -15,8 +14,6 @@ export default function PageContentClient() {
   ];
 
   return (
-    <Grid container>
       <ComponentShowcase menuItem={menuItem} />
-    </Grid>
   );
 }
