@@ -1,7 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: ia_archiver
-Disallow: /
-User-agent: *
-Sitemap: https://example.com/sitemap.xml
-Disallow: /admin/
-Disallow: /support/
