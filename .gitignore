@@ -6,6 +6,10 @@
 .idea/
 *.iml
 
+# AI
+.claude/worktree
+.claude/*.local.json
+
 # Logs
 logs
 *.log
