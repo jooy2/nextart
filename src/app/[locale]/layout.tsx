@@ -5,7 +5,7 @@ import { Metadata, ResolvingMetadata, Viewport } from 'next';
 import { CssBaseline } from '@mui/material';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
+import { routing, supportLocales, fallbackLocale } from '@/i18n/routing';
 import StoreProvider from '@/store/StoreProvider';
 import { BASE_URL, SITE_NAME } from '@/constants/common';
 import ClientThemeProvider from '@/components/ClientThemeProvider';
@@ -14,8 +14,33 @@ import { clsx } from 'clsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export async function generateMetadata(parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: Promise<{ locale: string }>;
+  },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { alternates } = await parent;
+  const { locale } = await params;
+
+  // Derive the current page path from the parent's resolved canonical ('./'),
+  // strip the locale prefix, then build a self-referencing canonical plus
+  // hreflang alternates (including x-default) for every supported locale.
+  const resolvedCanonical = alternates?.canonical?.url?.toString();
+  const pathname = resolvedCanonical
+    ? new URL(resolvedCanonical, BASE_URL).pathname
+    : `/${locale}`;
+  const barePath = pathname.startsWith(`/${locale}`)
+    ? pathname.slice(locale.length + 1)
+    : pathname;
+
+  const languages: Record<string, string> = {};
+  for (const loc of supportLocales) {
+    languages[loc] = `${BASE_URL}/${loc}${barePath}`;
+  }
+  languages['x-default'] = `${BASE_URL}/${fallbackLocale}${barePath}`;
 
   return {
     title: SITE_NAME,
@@ -24,7 +49,8 @@ export async function generateMetadata(parent: ResolvingMetadata): Promise<Metad
     keywords: ['Next.js', 'NextART', 'Template'],
     authors: [{ name: SITE_NAME, url: BASE_URL }],
     alternates: {
-      canonical: `${BASE_URL}${alternates?.canonical?.url?.toString()}`,
+      canonical: `${BASE_URL}/${locale}${barePath}`,
+      languages,
     },
     twitter: {
       card: 'summary_large_image',

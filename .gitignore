@@ -77,3 +77,4 @@ typings/
 .env.test.local
 .env.production.local
 public/sitemap*.xml
+*.tsbuildinfo

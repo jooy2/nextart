@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
+import { BASE_URL } from '@/constants/common';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
+    metadataBase: new URL(BASE_URL),
     alternates: { canonical: './' },
   };
 }
