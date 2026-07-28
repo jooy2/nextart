@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Metadata, ResolvingMetadata, Viewport } from 'next';
 import { CssBaseline } from '@mui/material';
-import { NextIntlClientProvider } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import { routing, supportLocales, fallbackLocale } from '@/i18n/routing';
 import StoreProvider from '@/store/StoreProvider';
 import { BASE_URL, SITE_NAME } from '@/constants/common';
@@ -79,6 +80,16 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+
+  // [locale] is a dynamic segment, so it matches *any* first path segment -
+  // /index.php, /.env and /wp-login.php included. The proxy matcher excludes
+  // paths containing a dot, so those never reach next-intl and would render the
+  // home page with 200 instead of 404, which tells vulnerability scanners that
+  // every file they probe exists. generateStaticParams above only prerenders
+  // the real locales, it does not reject the others.
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
   setRequestLocale(locale);
 
