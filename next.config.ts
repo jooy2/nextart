@@ -1,6 +1,5 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import { NextConfig } from 'next';
-import theme from '@/styles/theme';
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -20,6 +19,17 @@ const nextJsConfig: NextConfig = {
   staticPageGenerationTimeout: 120,
   async headers() {
     return [
+      {
+        // Served identically to every visitor and never user specific, so let the
+        // browser and any CDN in front of the app hold on to it.
+        source: '/robots.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
